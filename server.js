@@ -233,7 +233,7 @@ app.post('/login', async (req, res) => {
       .run(empujonUserId, email, isAdmin, apiToken);
     user = db.prepare('SELECT * FROM users WHERE empujon_user_id = ?').get(empujonUserId);
   } else {
-    db.prepare('UPDATE users SET email=?, is_admin=?, last_login_at=datetime("now") WHERE id=?')
+    db.prepare("UPDATE users SET email=?, is_admin=?, last_login_at=datetime('now') WHERE id=?")
       .run(email, isAdmin, user.id);
     user = { ...user, email, is_admin: isAdmin };
   }
